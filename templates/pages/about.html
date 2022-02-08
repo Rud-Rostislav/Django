@@ -1,0 +1,51 @@
+{% extends 'base.html' %} 
+
+{% load static %}
+
+{% block title %} О нас {% endblock %}
+
+{% block content %}
+<section id="showcase-inner" class="py-5 text-white">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-12">
+          <h1 class="display-4">О нас</h1>
+          <p class="lead">Самый передовой магазин гаджетов</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Breadcrumb -->
+  <section id="bc" class="mt-3">
+    <div class="container">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="{% url 'index' %}">
+              <i class="fas fa-home"></i> Главная</a>
+          </li>
+          <li class="breadcrumb-item active"> О нас</li>
+        </ol>
+      </nav>
+    </div>
+  </section>
+
+  <section id="about" class="py-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <h2>Вы можете приехать в магазин и подобрать себе подходящий товар</h2>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12088.430655612861!2d30.526738268626538!3d50.43589433124502!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d4cefefaafe54b%3A0x4e94e0d56ada0ff8!2z0JTQstC-0YDQtdGGINCh0L_QvtGA0YLQsA!5e0!3m2!1sru!2sua!4v1644254256230!5m2!1sru!2sua" width="1100" height="500" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Work -->
+  <section id="work" class="bg-dark text-white text-center">
+    <h2 class="display-4">Посмотрите все наши девайсы</h2>
+    <a href="{% url 'listings' %}" class="btn btn-secondary text-white btn-lg">Смотреть</a>
+  </section>
+
+{% endblock %}

@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% load humanize %}
+
+{% block title %} Результаты поисков {% endblock %}
+
+{% block content %}
+
+<section id="showcase-inner" class="showcase-search text-white py-5">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-12">
+          <form action="{% url 'search' %}">
+            <!-- Form Row 1 -->
+            <div class="form-row">
+              <div class="col-md-6 mb-3">
+                <label class="sr-only">Название</label>
+                <input type="text" name="keywords" class="form-control" placeholder="Название" value="{{ values.keywords }}">
+              </div>
+            </div>
+            <!-- Form Row 2 -->
+            <div class="form-row">
+              <div class="col-md-6 mb-1">
+                <select name="price" class="form-control">
+                  <option selected="true" disabled="disabled">Максимальная цена</option>
+                  {% for key,value in price_choices.items %}
+                      <option value="{{ key }}"
+                      {% if key == values.price %}
+                        selected
+                      {% endif %}
+                      >{{ value }}</option>
+                    {% endfor %}
+                </select>
+              </div>
+            </div>
+            <button class="btn btn-secondary btn-block mt-4" type="submit">Поиск</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Breadcrumb -->
+  <section id="bc" class="mt-3">
+    <div class="container">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="{% url 'index' %}">
+              <i class="fas fa-home"></i> Главная</a>
+          </li>
+          <li class="breadcrumb-item">
+            <a href="{% url 'listings' %}">Все товары</a>
+          </li>
+          <li class="breadcrumb-item active"> Результат поиска</li>
+        </ol>
+      </nav>
+    </div>
+  </section>
+
+  <!-- Listings -->
+  <section id="listings" class="py-4">
+    <div class="container">
+      <div class="row">
+        {% if listings %}
+          {% for listing in listings %}
+          <div class="col-md-6 col-lg-4 mb-4">
+              <div class="card listing-preview">
+                <img class="card-img-top" src="{{ listing.photo_main.url }}" alt="">
+                <br>
+                <br>
+                <div class="card-img-overlay">
+                  <h2>
+                    <span class="badge badge-secondary text-white">${{ listing.price }}</span>
+                  </h2>
+                </div>
+                 <div class="card-body">
+                  <div class="listing-heading text-center">
+                    <h4 class="text-primary">{{ listing.title }}</h4>
+                    <p>
+                  </div>
+                  <hr>
+                  <div class="row py-2 text-secondary">
+                  <a href="{% url 'listing' listing.id %}" class="btn btn-primary btn-block">Посмотреть</a>
+                </div>
+              </div>
+              </div>
+            </div>
+          {% endfor %}
+        {% else %}
+          <div class="col-md-12">
+            <p>Товаров нету</p>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+  {% endblock %}

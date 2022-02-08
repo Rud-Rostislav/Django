@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+
+{% load humanize %}
+
+{% block title %} {{ listing.title }} {% endblock %}
+
+{% block content %}
+<section id="showcase-inner" class="py-5 text-white">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-12">
+          <h1 class="display-4">{{ listing.title }}</h1>
+          <p class="lead">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Breadcrumb -->
+  <section id="bc" class="mt-3">
+    <div class="container">
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="{% url 'index' %}">Главная</a>
+          </li>
+          <li class="breadcrumb-item">
+            <a href="{% url 'listings' %}">Все товары</a>
+          </li>
+          <li class="breadcrumb-item active">{{ listing.title }}</li>
+        </ol>
+      </nav>
+    </div>
+  </section>
+
+  <!-- Alerts -->
+  {% include 'partials/_alerts.html' %}
+
+  <!-- Listing -->
+  <section id="listing" class="py-4">
+    <div class="container">
+      <a href="{% url 'listings' %}" class="btn btn-light mb-4">Назад ко всем товарам</a>
+      <div class="row">
+        <div class="col-md-9">
+          <!-- Home Main Image -->
+          <img src="{{ listing.photo_main.url }}" alt="" class="img-main img-fluid mb-3">
+          <!-- Thumbnails -->
+          <div class="row mb-5 thumbs">
+            {% if listing.photo_1 %}
+            <div class="col-md-2">
+              <a href="{{ listing.photo_1.url }}" data-lightbox="home-images">
+                <img src="{{ listing.photo_1.url }}" alt="" class="img-fluid">
+              </a>
+            </div>
+            {% endif %}
+            {% if listing.photo_2 %}
+            <div class="col-md-2">
+              <a href="{{ listing.photo_2.url }}" data-lightbox="home-images">
+                <img src="{{ listing.photo_2.url }}" alt="" class="img-fluid">
+              </a>
+            </div>
+            {% endif %}
+            {% if listing.photo_3 %}
+            <div class="col-md-2">
+              <a href="{{ listing.photo_3.url }}" data-lightbox="home-images">
+                <img src="{{ listing.photo_3.url }}" alt="" class="img-fluid">
+              </a>
+            </div>
+            {% endif %}
+            {% if listing.photo_4 %}
+            <div class="col-md-2">
+              <a href="{{ listing.photo_4.url }}" data-lightbox="home-images">
+                <img src="{{ listing.photo_4.url }}" alt="" class="img-fluid">
+              </a>
+            </div>
+            {% endif %}
+            {% if listing.photo_5 %}
+            <div class="col-md-2">
+              <a href="{{ listing.photo_5.url }}" data-lightbox="home-images">
+                <img src="{{ listing.photo_5.url }}" alt="" class="img-fluid">
+              </a>
+            </div>
+            {% endif %}
+            {% if listing.photo_6 %}
+            <div class="col-md-2">
+              <a href="{{ listing.photo_6.url }}" data-lightbox="home-images">
+                <img src="{{ listing.photo_6.url }}" alt="" class="img-fluid">
+              </a>
+            </div>
+            {% endif %}
+          </div>
+          <!-- Fields -->
+          <h5>
+            <div class="row mb-1 fields">
+              <div class="col-md-6">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item text-secondary">
+                    <i class="fas fa-money-bill-alt"></i> Цена: {{ listing.price | intcomma }} ₴
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </h5>
+          <!-- Description -->
+          <div class="row mb-5">
+            <h6 class="float-right">Характеристики:</h6>
+            <div class="col-md-12">
+                {{ listing.description }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
